@@ -1,0 +1,31 @@
+.menu {
+	color: var(--main-color);
+	width: 670px;
+	align-self: center;
+}
+.list {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+}
+.list_item {
+	margin-right: 70px;
+	list-style-type: none;
+}
+.list_item:last-child {
+	margin-right: 0px;
+}
+.list_item:hover {
+	cursor: pointer;
+}
+.list_item::after {
+	position: absolute;
+
+	content: "";
+	width: 40px;
+	height: 40px;
+	background: url("../../../../image/arrow.svg");
+	background-repeat: no-repeat;
+}
