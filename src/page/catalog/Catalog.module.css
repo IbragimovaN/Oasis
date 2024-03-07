@@ -1,0 +1,16 @@
+.products {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+
+	padding-top: 80px;
+	justify-content: space-between;
+}
+.narrow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	max-width: 900px;
+	padding-top: 80px;
+	justify-content: space-between;
+}

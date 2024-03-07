@@ -1,25 +1,34 @@
 import { Route, Routes } from "react-router-dom";
 import { Header, Footer } from "./components";
+
 import styles from "./App.module.css";
-import { MainPage } from "./page/main/Main-page";
+import { routesPath } from "./components/protected-routes/route-path";
+import { ProtectedRoutes } from "./components/protected-routes/Protected-routes";
 
 export const App = () => {
 	return (
-		<div>
+		<div className={styles.app}>
 			<Header />
-			<MainPage />
-
-			{/* <h2>Контент страницы</h2>
 
 			<Routes>
-				<Route path="/" element={<div>Главная страница</div>} />
-				<Route path="/login" element={<div>Авторизация</div>} />
-				<Route path="/register" element={<div>Регистрация</div>} />
-				<Route path="/buyers" element={<div>Покупатели</div>} />
-				<Route path="/*" element={<div>Ошибка</div>} />
+				{routesPath.map((item) => (
+					<Route
+						key={item.path}
+						path={item.path}
+						element={
+							item.isAuth ? (
+								<ProtectedRoutes roles={item.roles}>
+									{item.element}
+								</ProtectedRoutes>
+							) : (
+								item.element
+							)
+						}
+					/>
+				))}
 			</Routes>
 
-			<Footer /> */}
+			<Footer />
 		</div>
 	);
 };

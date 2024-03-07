@@ -1,0 +1,14 @@
+.wrapper {
+	height: 312px;
+	width: 228px;
+	border: 1px solid black;
+	display: grid;
+	grid-template: 170px 50px 30px 1fr/1fr;
+	padding: 5px;
+	justify-items: center;
+}
+
+.image {
+	max-height: 150px;
+	max-width: 180px;
+}

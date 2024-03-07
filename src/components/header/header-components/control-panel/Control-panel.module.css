@@ -12,6 +12,13 @@
 	height: 40px;
 	font-size: 24px;
 	display: flex;
+	justify-content: center;
+	align-items: end;
+}
+.button_wrapper {
+	width: 80px;
+	display: flex;
+	justify-content: center;
 	align-items: end;
 }
 .cost {

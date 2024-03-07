@@ -1,0 +1,10 @@
+.button {
+	background-color: var(--main-color);
+	color: var(--text-color);
+	height: 35px;
+	width: 100%;
+	border-radius: 5px;
+}
+.button:hover {
+	box-shadow: 1px 1px 19px 4px rgba(176, 200, 203, 0.75);
+}

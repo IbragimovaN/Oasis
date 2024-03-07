@@ -1,0 +1,22 @@
+.list_item_wrapper {
+	border: none;
+}
+.list_item {
+	margin-right: 70px;
+	list-style-type: none;
+}
+.list_item:last-child {
+	margin-right: 0px;
+}
+.list_item:hover {
+	cursor: pointer;
+}
+.list_item::after {
+	position: absolute;
+
+	content: "";
+	width: 40px;
+	height: 40px;
+	background: url("../../../../../../image/arrow.svg");
+	background-repeat: no-repeat;
+}

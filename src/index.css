@@ -10,6 +10,7 @@
 	font-optical-sizing: auto;
 	font-weight: 700;
 	font-style: normal;
+	box-sizing: border-box;
 	--main-color: #b1d6d8;
 	--main-color-light: #e4f0f1;
 	--text-color: #1c1515;
@@ -131,4 +132,5 @@ label {
 	width: 1240px;
 	border-top: 1px solid transparent;
 	margin: 0 auto;
+	position: relative;
 }
