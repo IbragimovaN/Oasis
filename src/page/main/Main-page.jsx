@@ -2,8 +2,8 @@ import styles from "./Main-page.module.css";
 export const MainPage = () => {
 	return (
 		<main className={styles.main}>
-			<div className={styles.container}>
-				<div className="container">
+			<div className={styles.wrapper}>
+				<div className={styles.container}>
 					<h1 className={styles.title}>
 						The Best Natural <span>& Organic Cosmetic </span>
 					</h1>

@@ -8,8 +8,12 @@ export const MenuItem = ({ item }) => {
 	const onMouseEnter = () => {
 		setIsOpenMenuItem(!isOpenMenuItem);
 	};
+
+	const onMouseLeave = () => {
+		setIsOpenMenuItem(false);
+	};
 	return (
-		<div className={styles.list_item_wrapper}>
+		<div className={styles.list_item_wrapper} onMouseLeave={onMouseLeave}>
 			<li onMouseEnter={onMouseEnter} className={styles.list_item}>
 				{item.name}
 			</li>

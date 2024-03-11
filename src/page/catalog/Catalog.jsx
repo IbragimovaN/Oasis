@@ -1,6 +1,6 @@
 import styles from "./Catalog.module.css";
 import { useEffect, useState } from "react";
-import { ProductCard } from "../product-card/Product-card";
+import { ProductCard } from "./catalog-components/product-card/Product-card";
 import { getAllProducts } from "../../bff/api";
 import { H2 } from "../../components/h2/H2";
 import { FilterPanel } from "./catalog-components/filter-panel/Filter-panel";
@@ -13,6 +13,15 @@ import {
 	productsSelector,
 } from "../../redux/selectors";
 import { setProductsAsync } from "../../redux/actions/set-products-async";
+import { Container } from "../../components";
+import {
+	setCurrentCategoryAction,
+	setFilterPanelTypeListAsync,
+	setIsLoading,
+} from "../../redux";
+import { useParams } from "react-router-dom";
+import { menu } from "../../constants";
+import { findChildMenuCategory } from "../../redux/actions/utills/findChildMenuCategory";
 
 export const Catalog = () => {
 	const dispatch = useDispatch();
@@ -21,14 +30,25 @@ export const Catalog = () => {
 	const checkedIdsArr = useSelector(checkedIdsArrSelector);
 	const currentCategory = useSelector(currentCategorySelector);
 	const filterPanelTypelist = useSelector(filterPanelTypeListSelector);
+	const params = useParams();
 
 	useEffect(() => {
-		console.log(products);
-		dispatch(setProductsAsync());
-	}, [dispatch]);
+		dispatch(setIsLoading(true));
+		if (params.idCategory) {
+			Promise.all([
+				dispatch(setProductsAsync(params.idCategory)),
+				dispatch(setCurrentCategoryAction(params?.idCategory)),
+				dispatch(setFilterPanelTypeListAsync(params?.idCategory)),
+			]).finally(() => {
+				dispatch(setIsLoading(false));
+			});
+		} else {
+			dispatch(setProductsAsync()).finally(() => dispatch(setIsLoading(false)));
+		}
+	}, [dispatch, params]);
 
 	return (
-		<div className="container">
+		<Container>
 			<H2>{currentCategory.name}</H2>
 			<div
 				className={`${styles.products} ${filterPanelTypelist.length > 0 ? styles.narrow : ""}`}
@@ -40,6 +60,6 @@ export const Catalog = () => {
 			<>
 				<FilterPanel />
 			</>
-		</div>
+		</Container>
 	);
 };

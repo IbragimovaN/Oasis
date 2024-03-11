@@ -1,13 +1,7 @@
 .list_item_wrapper {
 	border: none;
 }
-.list_item {
-	margin-right: 70px;
-	list-style-type: none;
-}
-.list_item:last-child {
-	margin-right: 0px;
-}
+
 .list_item:hover {
 	cursor: pointer;
 }

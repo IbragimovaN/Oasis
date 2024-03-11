@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Link, Navigate } from "react-router-dom";
 
-import { Button, Input } from "../../components";
+import { Button, Container, Input } from "../../components";
 
 import styles from "./Authorization-page.module.css";
 
@@ -49,25 +49,29 @@ export const Authorization = () => {
 	};
 
 	return (
-		<div className={styles.authorization}>
-			<div className={styles.wrapper}>
-				<h2 className={styles.title}>Авторизация</h2>
-				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-					<Input
-						type="text"
-						placeholder="Логин"
-						{...register("login", { onChange: () => setServerError(null) })}
-					/>
-					<Input
-						type="text"
-						placeholder={"пароль"}
-						{...register("password", { onChange: () => setServerError(null) })}
-					/>
-					<Button type="submit">Войти</Button>
+		<Container>
+			<div className={styles.authorization}>
+				<div className={styles.wrapper}>
+					<h2 className={styles.title}>Авторизация</h2>
+					<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+						<Input
+							type="text"
+							placeholder="Логин"
+							{...register("login", { onChange: () => setServerError(null) })}
+						/>
+						<Input
+							type="text"
+							placeholder={"пароль"}
+							{...register("password", {
+								onChange: () => setServerError(null),
+							})}
+						/>
+						<Button type="submit">Войти</Button>
 
-					<Link to="/register">Регистрация</Link>
-				</form>
+						<Link to="/register">Регистрация</Link>
+					</form>
+				</div>
 			</div>
-		</div>
+		</Container>
 	);
 };

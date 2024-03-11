@@ -4,3 +4,4 @@ export * from "./set-products-async";
 export * from "./set-products-action";
 export * from "./set-filterPanelTypeList-async";
 export * from "./set-checked-ids-arr-action";
+export * from "./set-isLoading-action";

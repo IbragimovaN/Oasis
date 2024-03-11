@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import styles from "./Filter-panel.module.css";
 import { FilterCategories } from "../filter-categories/Filter-categories";
 import { Button } from "../../../../components";
@@ -7,10 +7,12 @@ import {
 	checkedIdsArrSelector,
 	currentCategorySelector,
 	filterPanelTypeListSelector,
+	isLoadingSelector,
 } from "../../../../redux/selectors";
 import {
 	setCheckedIdsArrAction,
 	setFilterPanelTypeListAsync,
+	setIsLoading,
 } from "../../../../redux/actions";
 
 export const FilterPanel = () => {
@@ -19,6 +21,7 @@ export const FilterPanel = () => {
 	const currentCategory = useSelector(currentCategorySelector);
 
 	const checkedIdsArr = useSelector(checkedIdsArrSelector);
+	const isLoading = useSelector(isLoadingSelector);
 
 	const onClickCheckboxChange = (checkId) => {
 		console.log(checkId);
@@ -33,10 +36,14 @@ export const FilterPanel = () => {
 		}
 	};
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		dispatch(setFilterPanelTypeListAsync(currentCategory.id));
-		console.log(checkedIdsArr);
-	}, [dispatch, currentCategory, checkedIdsArr]);
+
+		// .finally(
+		// 	() => dispatch(setIsLoading(false)),
+
+		// );
+	}, [dispatch, currentCategory, checkedIdsArr, isLoading]);
 	return (
 		filterPanelTypelist.length > 0 && (
 			<div className={styles.filterPanel}>

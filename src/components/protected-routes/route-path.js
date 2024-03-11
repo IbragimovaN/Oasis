@@ -1,4 +1,7 @@
 import { Authorization, Catalog, MainPage } from "../../page";
+import { Bag } from "../../page/bag/Bag";
+import { CatalogWithAllProducts } from "../../page/catalog-with-all-products/CatalogWithAllProducts";
+import { CatalogWithProductsCategory } from "../../page/catalog-with-products-category/CatalogWithProductsCategory";
 
 export const routesPath = [
 	{
@@ -7,17 +10,11 @@ export const routesPath = [
 	},
 	{
 		path: "/catalog",
-		element: <Catalog />,
-		// children: [
-		//   {
-		//     path: "mask",
-		//     element: <Dashboard />,
-		//   },
-		//   {
-		//     path: "cream",
-		//     element: <About />,
-		//   },
-		// ],
+		element: <CatalogWithAllProducts />,
+	},
+	{
+		path: "/catalog/:idCategory",
+		element: <CatalogWithProductsCategory />,
 	},
 	{
 		path: "/login",

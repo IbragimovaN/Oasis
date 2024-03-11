@@ -1,12 +1,14 @@
 .menu {
 	color: var(--main-color);
-	width: 670px;
-	align-self: center;
+	width: 660px;
+	align-self: start;
 }
 .list {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	width: 100%;
+	display: grid;
+	grid-template: 1fr / repeat(4, 150px);
+	gap: 20px;
+	align-items: start;
 	margin: 0;
 	padding: 0;
 }
