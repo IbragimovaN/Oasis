@@ -1,5 +1,4 @@
-import { Authorization, Catalog, MainPage } from "../../page";
-import { Bag } from "../../page/bag/Bag";
+import { Authorization, MainPage } from "../../page";
 import { CatalogWithAllProducts } from "../../page/catalog-with-all-products/CatalogWithAllProducts";
 import { CatalogWithProductsCategory } from "../../page/catalog-with-products-category/CatalogWithProductsCategory";
 

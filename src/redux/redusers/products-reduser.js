@@ -18,7 +18,6 @@ export const productsReducer = (state = initialProductsState, action) => {
 			};
 		}
 		case SET_FILTERED_PRODUCTS: {
-			console.log(payload);
 			return {
 				...state,
 				filteredProducts: payload,

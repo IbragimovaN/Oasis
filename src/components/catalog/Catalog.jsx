@@ -1,5 +1,5 @@
 import styles from "./Catalog.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ProductCard } from "./catalog-components/product-card/Product-card";
 import { getAllProducts } from "../../bff/api";
 import { H2 } from "../../components/h2/H2";
@@ -20,14 +20,11 @@ import {
 	setIsLoading,
 } from "../../redux";
 import { useParams } from "react-router-dom";
-import { menu } from "../../constants";
-import { findChildMenuCategory } from "../../redux/actions/utills/findChildMenuCategory";
 
 export const Catalog = () => {
 	const dispatch = useDispatch();
 
 	const products = useSelector(productsSelector);
-	const checkedIdsArr = useSelector(checkedIdsArrSelector);
 	const currentCategory = useSelector(currentCategorySelector);
 	const filterPanelTypelist = useSelector(filterPanelTypeListSelector);
 	const params = useParams();

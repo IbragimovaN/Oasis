@@ -16,6 +16,7 @@ export const FilterCategories = ({
 					key={item.checkId}
 					item={item}
 					onClickCheckboxChange={onClickCheckboxChange}
+					dataTypeOfFilter={id}
 				></FilterCategiriesCheckInput>
 			))}
 		</div>

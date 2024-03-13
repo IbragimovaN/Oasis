@@ -3,7 +3,7 @@ export const transformProduct = (dbProduct) => ({
 	title: dbProduct.title,
 	brand: dbProduct.brand,
 	category: dbProduct.category,
-	skinType: dbProduct.skin_type,
+	age: dbProduct.age,
 	price: dbProduct.price,
 	rating: dbProduct.rating,
 	imageUrl: dbProduct.image_url,

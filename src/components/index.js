@@ -5,3 +5,4 @@ export * from "./button/Button";
 export * from "./h2/H2";
 export * from "./search/Search";
 export * from "./container/Container";
+export * from "./catalog/Catalog";

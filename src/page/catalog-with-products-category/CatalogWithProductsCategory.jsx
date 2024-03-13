@@ -1,4 +1,4 @@
-import { Catalog } from "../catalog/Catalog";
+import { Catalog } from "../../components";
 
 export const CatalogWithProductsCategory = () => {
 	return (
