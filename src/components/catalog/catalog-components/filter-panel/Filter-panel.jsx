@@ -19,6 +19,8 @@ import {
 	setProductsAction,
 	setProductsAsync,
 } from "../../../../redux/actions";
+import { object } from "prop-types";
+import { rest } from "lodash";
 
 const filteredArrayFunc = (array) =>
 	array.reduce((acc, currentValue) => {
@@ -33,52 +35,63 @@ const filteredArrayFunc = (array) =>
 export const FilterPanel = () => {
 	const dispatch = useDispatch();
 	const filterPanelTypelist = useSelector(filterPanelTypeListSelector);
-	const currentCategory = useSelector(currentCategorySelector);
 	const products = useSelector(productsSelector);
-	const [checkedIdsArr, setCheckedIdsArr] = useState([]);
-	const filteredProducts = useSelector(filteredProductsSelector);
+	const [currentFilterObj, setCurrentFilterObj] = useState({});
 	const [currentProducts, setCurrentProducts] = useState([]);
 
 	useEffect(() => {
 		setCurrentProducts(products);
 	}, []);
 
-	const onClickCheckboxChange = (checkId, dataTypeOfFilter) => {
-		if (checkedIdsArr.includes(checkId)) {
-			setCheckedIdsArr(checkedIdsArr.filter((item) => item !== checkId));
+	const onClickCheckboxChange = (target) => {
+		if (target.checked === true) {
+			if (Object.keys(currentFilterObj).includes(target.dataset.type)) {
+				Object.keys(currentFilterObj).forEach((key) => {
+					if (key === target.dataset.type) {
+						const addObjId = [
+							...currentFilterObj[target.dataset.type],
+							target.id,
+						];
 
-			dispatch(
-				setFilteredProductsAction(
-					filteredProducts.filter((item) => item[dataTypeOfFilter] !== checkId),
-				),
-			);
+						setCurrentFilterObj({
+							...currentFilterObj,
+							[target.dataset.type]: addObjId,
+						});
+					}
+				});
+			} else {
+				setCurrentFilterObj({
+					...currentFilterObj,
+					[target.dataset.type]: [target.id],
+				});
+			}
 		} else {
-			setCheckedIdsArr([...checkedIdsArr, checkId]);
-
-			dispatch(
-				setFilteredProductsAction([
-					...filteredProducts,
-					...currentProducts.filter((product) => {
-						return product[dataTypeOfFilter] === checkId;
-					}),
-				]),
+			const deleteObjId = currentFilterObj[target.dataset.type].filter(
+				(checked) => checked !== target.id,
 			);
+			setCurrentFilterObj({
+				...currentFilterObj,
+				[target.dataset.type]: deleteObjId,
+			});
 		}
 	};
 
-	const onSubmitFilter = async () => {
-		const ff = filteredArrayFunc(filteredProducts);
-		await dispatch(setProductsAsync(currentCategory.id));
-		filteredProducts.length > 0 && dispatch(setProductsAction(ff));
+	const onSubmitFilter = () => {
+		console.log("currentProducts", currentProducts);
+		console.log("currentFilterObj", currentFilterObj);
+		let newFilteredCatalog = currentProducts;
+		console.log("newFilteredCatalog", newFilteredCatalog);
+		Object.keys(currentFilterObj).forEach((key) => {
+			const filterValues = currentFilterObj[key];
+			console.log("filterValues", filterValues);
+			if (filterValues.length > 0) {
+				newFilteredCatalog = newFilteredCatalog.filter((item) =>
+					filterValues.includes(item[key]),
+				);
+			}
+		});
+		dispatch(setProductsAction(newFilteredCatalog));
 	};
-
-	useEffect(() => {
-		console.log(checkedIdsArr);
-		console.log(currentProducts);
-		console.log(filteredProducts);
-
-		dispatch(setFilterPanelTypeListAsync(currentCategory.id));
-	}, [currentCategory, dispatch, filteredProducts, currentProducts]);
 
 	return (
 		filterPanelTypelist.length > 0 && (

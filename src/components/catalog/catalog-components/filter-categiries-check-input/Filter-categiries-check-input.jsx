@@ -12,9 +12,9 @@ export const FilterCategiriesCheckInput = ({
 				className={styles.input}
 				type="checkbox"
 				id={item.checkId}
-				onChange={() => onClickCheckboxChange(item.checkId, dataTypeOfFilter)}
+				onChange={({ target }) => onClickCheckboxChange(target)}
+				// onChange={() => onClickCheckboxChange(item.checkId, dataTypeOfFilter)}
 				data-type={dataTypeOfFilter}
-			
 			/>
 			<label className={styles.label} htmlFor={item.checkId}>
 				{item.name}
